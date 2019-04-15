@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: MyString
+  rating: 
+  cost: 1.5
+
+two:
+  date: MyString
+  rating: 
+  cost: 1.5
