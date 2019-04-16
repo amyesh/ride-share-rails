@@ -62,12 +62,41 @@ describe DriversController do
       must_respond_with :redirect
     end
 
-    # it "will return a 400 for an invalid driver" do
+    it "will save a new driver and redirect if valid" do
+      driver_name = "Amy Martinson"
+      driver_vin = "ABCDEFGH123456789"
+      test_driver = {
+        "driver": {
+          name: driver_name,
+          vin: driver_vin
+        }
+      }
 
-    # end
+      expect {
+        post drivers_path, params: test_driver
+      }.wont_change "Driver.count"
+
+      must_respond_with :bad_request
+    end
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "can delete a driver" do
+      driver = Driver.create(name: "Amy Martinson", vin: "ABCDEFGH123456789")
+
+      expect {
+        delete driver_path(driver.id)
+      }.must_change "Driver.count", -1
+
+      must_respond_with :redirect
+      must_redirect_to drivers_path
+    end
+    
+    it "returns a 404 if the driver is not valid" do
+      invalid_driver_id = -1
+
+      get driver_path(invalid_driver_id)
+      must_respond_with :not_found
+    end
   end
 end

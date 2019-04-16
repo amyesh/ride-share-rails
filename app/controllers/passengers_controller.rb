@@ -10,4 +10,37 @@ class PassengersController < ApplicationController
       head :not_found
     end
   end
+
+    def new
+    @passenger = Passenger.new(name: "Jane Doe", phone_num: "(123)-456-7890")
+  end
+
+  def create
+    @passenger = Passenger.new(passenger_params)
+
+    save_is_successful = @passenger.save
+
+    if save_is_successful
+      redirect_to passenger_path(@passenger.id)
+    else
+      render :new, status: :bad_request
+    end
+  end
+
+  def destroy
+    passenger = Passenger.find_by(id: params[:id])
+
+    if passenger.nil?
+      head :not_found
+    else
+      passenger.destroy
+      redirect_to passengers_path
+    end
+  end
+
+  private 
+
+  def passenger_params
+    return params.require(:passenger).permit(:name, :phone_num)
+  end
 end
