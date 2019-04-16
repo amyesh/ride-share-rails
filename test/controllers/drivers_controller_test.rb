@@ -116,8 +116,8 @@ describe DriversController do
       must_respond_with :redirect
     end
 
-    it "will save a new driver and redirect if valid" do
-      driver_name = "Amy Martinson"
+    it "will return a 400" do
+      driver_name = ""
       driver_vin = "ABCDEFGH123456789"
       test_driver = {
         "driver": {
@@ -125,7 +125,7 @@ describe DriversController do
           vin: driver_vin
         }
       }
-
+      new_driver = Driver.create(test_driver["driver"])
       expect {
         post drivers_path, params: test_driver
       }.wont_change "Driver.count"

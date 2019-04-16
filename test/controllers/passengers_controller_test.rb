@@ -116,18 +116,21 @@ describe PassengersController do
       must_respond_with :redirect
     end
 
-    it "will save a new passenger and redirect if valid" do
-      passenger_name = "Faiza Ahsan"
+    it "will return a 400" do
+      passenger_name = ""
       passenger_phone_num = "(123)456-7890"
       test_passenger = {
         "passenger": {
+
           name: passenger_name,
           phone_num: passenger_phone_num
         }
       }
-
+      
+      new_passenger = Passenger.create(test_passenger["passenger"])
+      
       expect {
-        post passenger_path, params: test_passenger
+        post passengers_path, params: test_passenger
       }.wont_change "Passenger.count"
 
       must_respond_with :bad_request
