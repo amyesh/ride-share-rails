@@ -27,12 +27,66 @@ describe PassengersController do
     end
   end
 
-  describe "edit" do
-    # Your tests go here
-  end
+  # describe "edit" do
+  #   # Your tests go here
+  # end
 
   describe "update" do
-    # Your tests go here
+    it "will update an existing passenger" do
+      starter_input = {
+        name: "Faiza Ahsad",
+        phone_num: "555-555-5555",
+      }
+
+      passenger_to_update = Passenger.create(starter_input)
+
+      input_name = "Amy Martinsen"
+      input_phone_num = "222-222-2222"
+      test_input = {
+        "passenger": {
+          name: input_name,
+          phone_num: input_phone_num,
+        },
+      }
+
+      expect {
+        patch passenger_path(passenger_to_update.id), params: test_input
+      }.wont_change "Passenger.count"
+
+      must_respond_with :redirect
+      passenger_to_update.reload
+      expect(passenger_to_update.name).must_equal test_input[:passenger][:name]
+      expect(passenger_to_update.phone_num).must_equal test_input[:passenger][:phone_num]
+    end
+
+    it "will return a bad_request (400) when asked to update with invalid data" do
+      starter_input = {
+        name: "Punchinello Funny Fellow",
+        phone_num: "867-5309",
+      }
+
+      passenger_to_update = Passenger.create(starter_input)
+
+      input_name = ""
+      input_phone_num = "123-456-7890"
+      test_input = {
+        "passenger": {
+          name: input_name,
+          phone_num: input_phone_num,
+        },
+      }
+
+      # Act
+      expect {
+        patch passenger_path(passenger_to_update.id), params: test_input
+      }.wont_change "Passenger.count"
+
+      # Assert
+      must_respond_with :bad_request
+      passenger_to_update.reload
+      expect(passenger_to_update.name).must_equal starter_input[:name]
+      expect(passenger_to_update.phone_num).must_equal starter_input[:phone_num]
+    end
   end
 
   describe "new" do
