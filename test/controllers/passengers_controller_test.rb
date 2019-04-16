@@ -9,20 +9,7 @@ describe PassengersController do
   end
 
   describe "show" do
-    it "should be OK to show an existing passenger" do
-      passenger = Passenger.new(name: "David Black", phone_num: "123-456-7890")
-      passenger_id = passenger.id
 
-      get passenger_path(passenger_id)
-
-      must_respond_with :success
-    end
-
-    it "should give a 404 instead of showing a non-existant passenger" do
-      invalid_id = 999
-      get passenger_path(invalid_id)
-      must_respond_with :not_found
-    end
   end
 
   describe "edit" do
