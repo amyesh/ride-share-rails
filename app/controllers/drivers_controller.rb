@@ -3,7 +3,15 @@ class DriversController < ApplicationController
     @drivers = Driver.all.order(:id)
   end
 
-  def new 
+  def show
+    driver_id = params[:id]
+    @driver = Driver.find_by(id: driver_id)
+    if @driver.nil?
+      head :not_found
+    end
+  end
+
+  def new
     @driver = Driver.new(name: "John Doe", vin: "123456789ABCDEFGH")
   end
 
@@ -19,7 +27,7 @@ class DriversController < ApplicationController
     end
   end
 
-  private 
+  private
 
   def driver_params
     return params.require(:driver).permit(:name, :vin)

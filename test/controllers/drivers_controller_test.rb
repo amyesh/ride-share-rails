@@ -10,7 +10,7 @@ describe DriversController do
 
   describe "show" do
     it "should be OK to show an existing, valid driver" do
-      driver = Driver.create(name: "Faiza Husain", vin: "ABCDEFG")
+      driver = Driver.create(name: "Faiza Ahsan", vin: "ABCDEFG")
       valid_driver_id = driver.id
 
       get driver_path(valid_driver_id)
