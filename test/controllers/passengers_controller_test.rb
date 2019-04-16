@@ -9,7 +9,22 @@ describe PassengersController do
   end
 
   describe "show" do
-    # Your tests go here
+    it "should be OK to show an existing, valid passenger" do
+      passenger = Passenger.create(name: "Faiza Husain", phone_num: "555-555-5555")
+      valid_passenger_id = passenger.id
+
+      get passenger_path(valid_passenger_id)
+
+      must_respond_with :success
+    end
+
+    it "should give a 404 instead of showing a non-existant, invalid passenger" do
+      invalid_passenger_id = 999
+
+      get passenger_path(invalid_passenger_id)
+
+      must_respond_with :not_found
+    end
   end
 
   describe "edit" do
