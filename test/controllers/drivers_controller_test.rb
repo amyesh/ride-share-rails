@@ -40,7 +40,31 @@ describe DriversController do
   end
 
   describe "create" do
-    # Your tests go here
+    it "will save a new driver and redirect if valid" do
+      driver_name = "Amy Martinson"
+      driver_vin = "ABCDEFGH123456789"
+      test_driver = {
+        "driver": {
+          name: driver_name,
+          vin: driver_vin
+        }
+      }
+
+      expect {
+        post drivers_path, params: test_driver
+      }.must_change 'Driver.count', 1
+
+      new_driver = Driver.find_by(name: driver_name)
+      expect(new_driver).wont_be_nil
+      expect(new_driver.name).must_equal driver_name
+      expect(new_driver.vin).must_equal driver_vin
+
+      must_respond_with :redirect
+    end
+
+    # it "will return a 400 for an invalid driver" do
+
+    # end
   end
 
   describe "destroy" do
