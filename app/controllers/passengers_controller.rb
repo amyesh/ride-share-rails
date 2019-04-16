@@ -26,6 +26,22 @@ class PassengersController < ApplicationController
       render :new, status: :bad_request
     end
   end
+  def edit
+    @passenger = Passenger.find_by(id: params[:id])
+  end
+
+  def update
+    passenger = Passenger.find_by(id: params[:id])
+
+    is_successful = passenger.update(passenger_params)
+
+    if is_successful
+      redirect_to passenger_path(passenger.id)
+    else
+      @passenger = passenger
+      render :edit, status: :bad_request
+    end
+  end
 
   def destroy
     passenger = Passenger.find_by(id: params[:id])

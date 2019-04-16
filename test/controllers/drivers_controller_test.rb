@@ -27,12 +27,66 @@ describe DriversController do
     end
   end
 
-  describe "edit" do
-    # Your tests go here
-  end
+  # describe "edit" do
+  #   # Your tests go here
+  # end
 
   describe "update" do
-    # Your tests go here
+    it "will update an existing driver" do
+      starter_input = {
+        name: "Faiza Ahsad",
+        vin: "LMNOP",
+      }
+
+      driver_to_update = Driver.create(starter_input)
+
+      input_name = "Amy Martinsen"
+      input_vin = "GKLMONP"
+      test_input = {
+        "driver": {
+          name: input_name,
+          vin: input_vin,
+        },
+      }
+
+      expect {
+        patch driver_path(driver_to_update.id), params: test_input
+      }.wont_change "Driver.count"
+
+      must_respond_with :redirect
+      driver_to_update.reload
+      expect(driver_to_update.name).must_equal test_input[:driver][:name]
+      expect(driver_to_update.vin).must_equal test_input[:driver][:vin]
+    end
+
+    it "will return a bad_request (400) when asked to update with invalid data" do
+      starter_input = {
+        name: "Punchinello Funny Fellow",
+        vin: "452340923844ASDLK",
+      }
+
+      driver_to_update = Driver.create(starter_input)
+
+      input_name = ""
+      input_vin = "ASDLFJASKDFH"
+      test_input = {
+        "driver": {
+          name: input_name,
+          vin: input_vin,
+        },
+      }
+
+      # Act
+      expect {
+        patch driver_path(driver_to_update.id), params: test_input
+      }.wont_change "Driver.count"
+
+      # Assert
+      must_respond_with :bad_request
+      driver_to_update.reload
+      expect(driver_to_update.name).must_equal starter_input[:name]
+      expect(driver_to_update.vin).must_equal starter_input[:vin]
+    end
   end
 
   describe "new" do
@@ -41,18 +95,18 @@ describe DriversController do
 
   describe "create" do
     it "will save a new driver and redirect if valid" do
-      driver_name = "Amy Martinson"
+      driver_name = "Amy Martinsen"
       driver_vin = "ABCDEFGH123456789"
       test_driver = {
         "driver": {
           name: driver_name,
-          vin: driver_vin
-        }
+          vin: driver_vin,
+        },
       }
 
       expect {
         post drivers_path, params: test_driver
-      }.must_change 'Driver.count', 1
+      }.must_change "Driver.count", 1
 
       new_driver = Driver.find_by(name: driver_name)
       expect(new_driver).wont_be_nil
