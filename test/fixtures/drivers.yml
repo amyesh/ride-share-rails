@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  phon_num: MyString
+  vin: MyString
 
 two:
   name: MyString
-  phon_num: MyString
+  vin: MyString
