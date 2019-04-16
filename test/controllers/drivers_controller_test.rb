@@ -2,9 +2,6 @@ require "test_helper"
 
 describe DriversController do
   describe "index" do
-    it "can get index" do
-      # Your code here
-    end
   end
 
   describe "show" do
