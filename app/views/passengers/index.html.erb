@@ -4,7 +4,7 @@
 <ul>
     <% @passengers.each do |pass| %>
     <li>
-    <%= pass.name%>
+    <%= link_to pass.name, passenger_path(pass.id) %>
   </li>
     <% end %>
 </ul>

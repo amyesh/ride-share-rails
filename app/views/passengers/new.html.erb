@@ -1,1 +1,10 @@
-I'm in the new view
+<h2> Add a new Passenger! </h2>
+<p> Please fill out the below form to add a new Passenger. </p>
+
+<%= render partial: "passengerform", locals: {
+  form_class: "new-passenger",
+  action_name: "Add Passenger"
+} %>
+
+<%= link_to "Home", homepages_path %>
+<%= link_to "All Passengers", passengers_path %>  
