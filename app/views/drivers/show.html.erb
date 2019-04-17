@@ -4,6 +4,7 @@
   <div class="driverbox">
     <h3>Name: <%=@driver[:name]%></h3>
     <h3>Vin: <%=@driver[:vin]%></h3>
+    <h3>Average Rating: <%=@driver.average_rating%></h3>
   </div>
 <% end %>
 
@@ -52,7 +53,7 @@
     </td>
 
     <td>
-      <%= @driver.average_rating %>
+      <%= trip.rating.to_f %>
     </td>
   </tr>
   <% end %>

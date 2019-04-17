@@ -4,21 +4,20 @@ class Driver < ApplicationRecord
   validates :name, presence: true
   validates :vin, presence: true, uniqueness: true
 
- def average_rating
-      this_drivers_ratings = []
-      average_rating = 0
+  def average_rating
+    sum = 0.0
+    total_trips = self.trips.count
 
-      if self.trips.length == 0
-        return average_rating
-      else
-        self.trips.each do |trip|
-          this_drivers_ratings << trip.rating
-        end      
-        average_rating = this_drivers_ratings.sum / this_drivers_ratings.length
-        
-        average_rating = average_rating.round(2)
-      end
-      return average_rating.to_f
+    if self.trips.length == 0
+      return 0.0
     end
-end # class end
 
+    self.trips.each do |trip|
+      sum += trip.rating
+    end
+
+    avg_rating = (sum / total_trips).to_f
+
+    return avg_rating.round(1)
+  end # method
+end # class end
