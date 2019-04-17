@@ -11,7 +11,7 @@ class PassengersController < ApplicationController
     end
   end
 
-    def new
+  def new
     @passenger = Passenger.new(name: "Jane Doe", phone_num: "(123)-456-7890")
   end
 

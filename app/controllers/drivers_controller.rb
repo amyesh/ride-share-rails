@@ -11,19 +11,19 @@ class DriversController < ApplicationController
     end
   end
 
-  
   def new
     @driver = Driver.new(name: "John Doe", vin: "123456789ABCDEFGH")
   end
-  
+
   def create
-    @driver = Driver.new(driver_params)
+    driver = Driver.new(driver_params)
     
-    save_is_successful = @driver.save
+    save_is_successful = driver.save
     
     if save_is_successful
-      redirect_to driver_path(@driver.id)
+      redirect_to driver_path(driver.id)
     else
+      @driver = driver
       render :new, status: :bad_request
     end
   end
@@ -35,14 +35,25 @@ class DriversController < ApplicationController
   def update
     driver = Driver.find_by(id: params[:id])
 
-    is_successful = driver.update(driver_params)
+    if driver.nil?
+      redirect_to drivers_path
+    else
+      is_successful = driver.update(driver_params)
+    end
 
     if is_successful
       redirect_to driver_path(driver.id)
-    else
-      @driver = driver
-      render :edit, status: :bad_request
     end
+  #   driver = Driver.find_by(id: params[:id])
+
+  #   is_successful = driver.update(driver_params)
+
+  #   if is_successful
+  #     redirect_to driver_path(driver.id)
+  #   else
+  #     @driver = driver
+  #     render :edit, status: :bad_request
+  #   end
   end
 
   def destroy
@@ -59,6 +70,6 @@ class DriversController < ApplicationController
   private
 
   def driver_params
-    return params.require(:driver).permit(:name, :vin)
+    params.require(:driver).permit(:name, :vin)
   end
 end

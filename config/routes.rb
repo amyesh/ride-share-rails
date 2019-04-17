@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get 'homepages/index'
-  resources :drivers, :passengers, :trips, :homepages
+
+  resources :drivers
+  resources :passengers
+  resources :trips
+  resources :homepages
 
   root to: "homepages#index"
 
