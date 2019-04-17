@@ -12,6 +12,22 @@ class TripsController < ApplicationController
     end
   end
 
+  def show
+    trip_id = params[:id]
+    @trip = Trip.find_by(id: trip_id)
+
+    if @trip.nil?
+      head :not_found
+    end
+  end
+
+  def create
+    # find available driver
+    # create trip with available driver
+    # change status of available driver
+  end
+
+
   private
 
   def trip_params

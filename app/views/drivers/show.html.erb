@@ -38,17 +38,21 @@
     <td>
       <%= link_to "#{trip.id}", trip_path(trip) %>
     </td>
-    &nbsp&nbsp
+
     <td>
       <%= trip.date %>
     </td>
-    &nbsp&nbsp
+
     <td>
       <%= trip.driver_name %>
     </td>
-    &nbsp&nbsp
+
     <td>
       <%= trip.passenger_name %>
+    </td>
+
+    <td>
+      <%= @driver.average_rating %>
     </td>
   </tr>
   <% end %>
