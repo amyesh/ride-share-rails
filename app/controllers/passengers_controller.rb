@@ -1,6 +1,6 @@
 class PassengersController < ApplicationController
   def index
-    @passengers = Passenger.all.order(:id)
+    @passengers = Passenger.all.order(:name)
   end
 
   def show
@@ -26,6 +26,7 @@ class PassengersController < ApplicationController
       render :new, status: :bad_request
     end
   end
+  
   def edit
     @passenger = Passenger.find_by(id: params[:id])
   end

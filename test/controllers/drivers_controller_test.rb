@@ -19,7 +19,7 @@ describe DriversController do
     end
 
     it "should give a 404 instead of showing a non-existant, invalid driver" do
-      invalid_driver_id = 999
+      invalid_driver_id = -1
 
       get driver_path(invalid_driver_id)
 

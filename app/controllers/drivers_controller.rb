@@ -1,6 +1,6 @@
 class DriversController < ApplicationController
   def index
-    @drivers = Driver.all.order(:id)
+    @drivers = Driver.all.order(:name)
   end
 
   def show
@@ -35,25 +35,14 @@ class DriversController < ApplicationController
   def update
     driver = Driver.find_by(id: params[:id])
 
-    if driver.nil?
-      redirect_to drivers_path
-    else
-      is_successful = driver.update(driver_params)
-    end
+    is_successful = driver.update(driver_params)
 
     if is_successful
       redirect_to driver_path(driver.id)
+    else
+      @driver = driver
+      render :edit, status: :bad_request
     end
-  #   driver = Driver.find_by(id: params[:id])
-
-  #   is_successful = driver.update(driver_params)
-
-  #   if is_successful
-  #     redirect_to driver_path(driver.id)
-  #   else
-  #     @driver = driver
-  #     render :edit, status: :bad_request
-  #   end
   end
 
   def destroy
@@ -70,6 +59,6 @@ class DriversController < ApplicationController
   private
 
   def driver_params
-    params.require(:driver).permit(:name, :vin)
+    return params.require(:driver).permit(:name, :vin)
   end
 end
