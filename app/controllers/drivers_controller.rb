@@ -11,6 +11,23 @@ class DriversController < ApplicationController
     end
   end
 
+  
+  def new
+    @driver = Driver.new(name: "John Doe", vin: "123456789ABCDEFGH")
+  end
+  
+  def create
+    @driver = Driver.new(driver_params)
+    
+    save_is_successful = @driver.save
+    
+    if save_is_successful
+      redirect_to driver_path(@driver.id)
+    else
+      render :new, status: :bad_request
+    end
+  end
+  
   def edit
     @driver = Driver.find_by(id: params[:id])
   end
@@ -25,22 +42,6 @@ class DriversController < ApplicationController
     else
       @driver = driver
       render :edit, status: :bad_request
-    end
-  end
-
-  def new
-    @driver = Driver.new(name: "John Doe", vin: "123456789ABCDEFGH")
-  end
-
-  def create
-    @driver = Driver.new(driver_params)
-
-    save_is_successful = @driver.save
-
-    if save_is_successful
-      redirect_to driver_path(@driver.id)
-    else
-      render :new, status: :bad_request
     end
   end
 
