@@ -10,32 +10,6 @@
     </div>
   <% end %>
 
-  <table>
-    <thead>
-      <td>
-        ID
-      </td>
-      <td>
-        Date
-      </td>
-      <td>
-        Driver
-      </td>
-      <td>
-        Passenger
-      </td>
-      <td>
-        Price
-      </td>
-      <td>
-        Rating
-      </td>
-      <td>
-        Delete
-      </td>
-    </thead>
-    <tbody>
-
     <table>
       <thead>
         <td>
@@ -55,9 +29,6 @@
         </td>
         <td>
           Rating
-        </td>
-        <td>
-          Delete
         </td>
       </thead>
       <tbody>
@@ -82,10 +53,6 @@
 
       <td>
         <%= trip.rating.to_f %>
-      </td>
-
-      <td>
-        <%= link_to "Edit", edit_driver_path(@driver.id) %> | <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure that you want to delete this trip?" } %>
       </td>
     </tr>
     <% end %>
