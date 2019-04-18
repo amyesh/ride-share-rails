@@ -17,9 +17,9 @@ class DriversController < ApplicationController
 
   def create
     driver = Driver.new(driver_params)
-    
+
     save_is_successful = driver.save
-    
+
     if save_is_successful
       redirect_to driver_path(driver.id)
     else
@@ -27,7 +27,7 @@ class DriversController < ApplicationController
       render :new, status: :bad_request
     end
   end
-  
+
   def edit
     @driver = Driver.find_by(id: params[:id])
   end
@@ -54,6 +54,13 @@ class DriversController < ApplicationController
       driver.destroy
       redirect_to drivers_path
     end
+  end
+
+  def toggle_availability
+    driver = Driver.find_by(id: params[:id])
+    driver.toggle(:availability)
+    driver.save
+    redirect_to drivers_path
   end
 
   private

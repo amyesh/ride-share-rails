@@ -1,4 +1,5 @@
 require "test_helper"
+require "pry"
 
 describe DriversController do
   describe "index" do
@@ -130,8 +131,8 @@ describe DriversController do
       test_driver = {
         "driver": {
           name: driver_name,
-          vin: driver_vin
-        }
+          vin: driver_vin,
+        },
       }
       new_driver = Driver.create(test_driver["driver"])
       expect {
@@ -153,12 +154,30 @@ describe DriversController do
       must_respond_with :redirect
       must_redirect_to drivers_path
     end
-    
+
     it "returns a 404 if the driver is not valid" do
       invalid_driver_id = -1
 
       get driver_path(invalid_driver_id)
       must_respond_with :not_found
+    end
+  end
+
+  describe "toggle_availability" do
+    it "changes default status to false" do
+      @driver = Driver.create(name: "Amy Martinson", vin: "ABCDEFGH123456789")
+      patch toggle_availability_path(@driver.id)
+      assert_redirected_to drivers_path
+      @driver.reload
+      assert_equal false, @driver.availability
+    end
+    it "changes default status back to true" do
+      @driver = Driver.create(name: "Amy Martinson", vin: "ABCDEFGH123456789")
+      patch toggle_availability_path(@driver.id)
+      patch toggle_availability_path(@driver.id)
+      assert_redirected_to drivers_path
+      @driver.reload
+      assert_equal true, @driver.availability
     end
   end
 end

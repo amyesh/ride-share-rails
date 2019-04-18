@@ -100,13 +100,13 @@ describe PassengersController do
       test_passenger = {
         "passenger": {
           name: passenger_name,
-          phone_num: passenger_phone_num
-        }
+          phone_num: passenger_phone_num,
+        },
       }
 
       expect {
         post passengers_path, params: test_passenger
-      }.must_change 'Passenger.count', 1
+      }.must_change "Passenger.count", 1
 
       new_passenger = Passenger.find_by(name: passenger_name)
       expect(new_passenger).wont_be_nil
@@ -123,12 +123,12 @@ describe PassengersController do
         "passenger": {
 
           name: passenger_name,
-          phone_num: passenger_phone_num
-        }
+          phone_num: passenger_phone_num,
+        },
       }
-      
+
       new_passenger = Passenger.create(test_passenger["passenger"])
-      
+
       expect {
         post passengers_path, params: test_passenger
       }.wont_change "Passenger.count"
