@@ -1,1 +1,46 @@
-Hi!
+<h2>Trip Details</h2>
+<br>
+<br>
+<table>
+  <thead>
+   <tr>
+     <th>ID</th>
+     <th>Date</th>
+     <th>Driver</th>
+     <th>Passenger</th>
+     <th>Price</th>
+     <th>Rating</th>
+     <th>Edit</th>
+     <th>Delete</th>
+   </tr>
+ </thead>
+ <tbody>
+    <tr>
+      <td>
+        <%= @trip.id %><br>
+      </td>
+      <td>
+        <%= @trip.date.to_s %><br>
+      </td>
+      <td>
+        <%= link_to "#{@trip.driver_name}", driver_path(@trip.driver_id) %><br>
+      </td>
+      <td>
+        <%= link_to "#{@trip.passenger_name}", passenger_path(@trip.passenger_id) %><br>
+      </td>
+      <td>
+        $<%= (@trip.cost).to_f / 100 %><br>
+      </td>
+      <td>
+        <%= @trip.rating %><br>
+      </td>
+      <td>
+        <%= link_to "Edit", edit_trip_path(@trip.id) %>
+      </td>
+      <td>
+        <%= link_to "Delete", trip_path(@trip.id), data: { confirm: "Are you sure you want to delete this trip?", method: :delete} %>
+      </td>
+    </tr>
+
+ </tbody>
+</table>
