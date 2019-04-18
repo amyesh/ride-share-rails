@@ -4,8 +4,9 @@
   <% else %>
     <div class="driverbox">
       <h3>Name: <%=@driver[:name]%></h3>
-      <h3>Vin: <%=@driver[:vin]%></h3>
-      <h3>Average Rating: <%=@driver.average_rating%></h3>
+      <h4>Vin: <%=@driver[:vin]%></h4>
+      <h4>Average Rating: <%=@driver.average_rating%></h4>
+      <h4> Total Revenue: $<%= '%.2f' % (@driver.total_revenue/100.0) %></h4>
     </div>
   <% end %>
 
@@ -35,38 +36,69 @@
     </thead>
     <tbody>
 
-  <% @driver.trips.each do |trip| %>
-    <tr>
-      <td>
-        <%= link_to "#{trip.id}", trip_path(trip) %>
-      </td>
+    <table>
+      <thead>
+        <td>
+          ID
+        </td>
+        <td>
+          Date
+        </td>
+        <td>
+          Driver
+        </td>
+        <td>
+          Passenger
+        </td>
+        <td>
+          Price
+        </td>
+        <td>
+          Rating
+        </td>
+        <td>
+          Delete
+        </td>
+      </thead>
+      <tbody>
+
+    <% @driver.trips.each do |trip| %>
+      <tr>
+        <td>
+          <%= link_to "#{trip.id}", trip_path(trip) %>
+        </td>
+
+        <td>
+          <%= trip.date %>
+        </td>
+
+        <td>
+          <%= trip.driver_name %>
+        </td>
 
       <td>
-        <%= trip.date %>
-      </td>
-
-      <td>
-        <%= trip.driver_name %>
-      </td>
-
-      <td>
-        <%= trip.passenger_name %>
+        $<%= '%.2f' % (trip.cost/100.0) %>
       </td>
 
       <td>
         <%= trip.rating.to_f %>
+      </td>
+
+      <td>
+        <%= link_to "Edit", edit_driver_path(@driver.id) %> | <%= link_to "Delete", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure that you want to delete this trip?" } %>
       </td>
     </tr>
     <% end %>
   </tbody>
   </table>
 
+  <br/>
   <div>
     <p class="button"><%= link_to "Edit", edit_driver_path(@driver.id) %></p>
   </div>
   <div>
     <p class="button"><%= link_to "Delete", driver_path(@driver.id), method: :delete, data: { confirm: "Are you sure that you want to delete this driver?" } %></p>
   </div>
-<article>
+</article>
 
 

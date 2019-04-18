@@ -20,4 +20,20 @@ class Driver < ApplicationRecord
 
     return avg_rating.round(1)
   end # method
+
+  def total_revenue
+    revenue = 0.0
+
+    self.trips.each do |trip|
+      if trip.cost == nil
+        revenue += 0
+      elsif
+        trip.cost < 1.65
+        revenue += 0
+      else 
+        revenue += ((trip.cost - 1.65) * 0.8).round(2)
+      end
+    end
+    return revenue
+  end
 end # class end

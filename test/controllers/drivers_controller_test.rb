@@ -27,9 +27,14 @@ describe DriversController do
     end
   end
 
-  # describe "edit" do
-  #   # Your tests go here
-  # end
+  describe "edit" do
+    it "can get edit path for driver" do
+      driver = Driver.create(name: "Faiza Ahsan", vin: "ABCDEFG")
+
+      get edit_driver_path(driver.id)
+      must_respond_with :success
+    end
+  end
 
   describe "update" do
     it "will update an existing driver" do
@@ -90,7 +95,10 @@ describe DriversController do
   end
 
   describe "new" do
-    # Your tests go here
+    it "can get new path for driver" do
+      get new_driver_path
+      must_respond_with :success
+    end
   end
 
   describe "create" do
