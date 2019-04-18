@@ -1,10 +1,12 @@
-<h2> Edit Driver Details </h2>
-<p> Please fill out the below form to update Driver's data. </p>
+<article class="forms">
+  <h2> Edit Driver Details </h2>
+  <p> Please enter driver's data below: </p>
 
-<%= render partial: "driverforms", locals: {
-  form_class: "edit-driver",
-  action_name: "Update Driver"
-} %>
-
-<%= link_to "Home", homepages_path %>
-<%= link_to "All Drivers", drivers_path %> 
+  <%= render partial: "driverforms", locals: {
+    form_class: "edit-driver",
+    action_name: "Update Driver"
+  } %>
+  <div>
+    <p class="button"><%= link_to "All Drivers", drivers_path %></p>
+  </div>
+</article>

@@ -1,10 +1,13 @@
-<h2> Edit Passenger Details </h2>
-<p> Please fill out the below form to update Passenger's data. </p>
+<article class="forms">
+  <h2> Edit Passenger Details </h2>
+  <p> Please enter passenger's data below: </p>
 
-<%= render partial: "passengerform", locals: {
-  form_class: "edit-passenger",
-  action_name: "Update Passenger"
-} %>
+  <%= render partial: "passengerform", locals: {
+    form_class: "edit-passenger",
+    action_name: "Update Passenger"
+  } %>
 
-<%= link_to "Home", homepages_path %>
-<%= link_to "All Passengers", passengers_path %>  
+  <div>
+    <p class="button"><%= link_to "All Passengers", passengers_path %></p>
+  </div> 
+</article>

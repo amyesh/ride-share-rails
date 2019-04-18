@@ -1,11 +1,14 @@
-<%= link_to "Home", homepages_path %>
-<%= link_to "Add Driver", new_driver_path %> 
-
-<ul class="drivers-list">
-  <% @drivers.each do |driver| %>
-    <li>
-      <%= link_to driver.name, driver_path(driver.id) %>
-    </li>
-  <% end %>
+<article>
+  <div>
+    <p class="button"><%= link_to "Add Driver", new_driver_path %></p>
+  <div>
+  <ul class="drivers-list">
+    <% @drivers.each do |driver| %>
+      <li>
+        <a><%= link_to driver.name, driver_path(driver.id) %></a>
+      </li>
+    <% end %>
+  </ul>
+</article>
 
 

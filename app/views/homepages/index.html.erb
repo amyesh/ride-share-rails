@@ -1,10 +1,14 @@
-<nav>
-  <ul>
-    <li>
-      <%= link_to Driver, drivers_path %>
-    </li>
-    <li>
-      <%= link_to Passenger, passengers_path %>
-    </li>
-  <ul>
-</nav>
+
+<article class="homepage">
+  <section>
+    <h1>RideShareRails</h1>
+  </section>
+  <section class="homepage">
+    <div>
+      <p class="button"><%= link_to "MANAGE DRIVERS", drivers_path %></p>
+    </div>
+    <div>
+      <p class="button"><%= link_to "MANAGE PASSENGERS", passengers_path %></p>
+    </div>
+  </section>
+</article>

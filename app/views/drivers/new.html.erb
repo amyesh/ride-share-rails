@@ -1,9 +1,13 @@
-<h2> Add a new Driver! </h2>
-<p> Please fill out the below form to add a new Driver. </p>
+<article>
+  <h2> Add a new Driver! </h2>
+  <p> Please enter driver information below:</p>
 
-<%= render partial: "driverforms", locals: {
-  form_class: "new-driver",
-  action_name: "Add Driver"
-} %>
+  <%= render partial: "driverforms", locals: {
+    form_class: "new-driver",
+    action_name: "Add Driver"
+  } %>
 
-<%= link_to "All Drivers", drivers_path %> 
+  <div>
+    <p class="button"><%= link_to "All Drivers", drivers_path %></p>
+  </div> 
+</article>

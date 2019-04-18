@@ -7,9 +7,30 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Allerta+Stencil" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
 
   <body>
+    <header>
+      <nav>
+        <ul>
+          <div>
+            <li>
+              <%= link_to "Drivers", drivers_path %> 
+            </li>
+            <li>
+              <%= link_to "Passengers", passengers_path %> 
+            </li>
+          </div>
+          <div>
+            <li>
+              <%= link_to "RideShareRails", homepages_path %>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>

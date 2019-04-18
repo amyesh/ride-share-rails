@@ -1,10 +1,13 @@
-<h2> Add a new Passenger! </h2>
-<p> Please fill out the below form to add a new Passenger. </p>
+<article>
+  <h2> Add a new Passenger! </h2>
+  <p> Please enter passenger information below:</p>
 
-<%= render partial: "passengerform", locals: {
-  form_class: "new-passenger",
-  action_name: "Add Passenger"
-} %>
+  <%= render partial: "passengerform", locals: {
+    form_class: "new-passenger",
+    action_name: "Add Passenger"
+  } %>
 
-<%= link_to "Home", homepages_path %>
-<%= link_to "All Passengers", passengers_path %>  
+  <div>
+    <p class="button"><%= link_to "All Passengers", passengers_path %></p>
+  </div> 
+</article>

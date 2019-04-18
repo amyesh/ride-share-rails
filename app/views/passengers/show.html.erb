@@ -1,60 +1,65 @@
-<% if @passenger.nil? %>
-  <h1> 404 Not found</h1>
-<% else %>
-  <div class="passengerbox">
-    <h3>Name: <%=@passenger[:name]%></h3>
-    <h3>Phone Number: <%=@passenger[:phone_num]%></h3>
-  </div>
-<% end %>
-
-<table>
-  <thead>
-    <td>
-      ID
-    </td>
-    <td>
-      Date
-    </td>
-    <td>
-      Driver
-    </td>
-    <td>
-      Passenger
-    </td>
-    <td>
-      Price
-    </td>
-    <td>
-      Rating
-    </td>
-    <td>
-      Delete
-    </td>
-  </thead>
-  <tbody>
-
-<% @passenger.trips.each do |trip| %>
-  <tr>
-    <td>
-      <%= link_to "#{trip.id}", trip_path(trip) %>
-    </td>
-    
-    <td>
-      <%= trip.date %>
-    </td>
-    
-    <td>
-      <%= trip.driver_name %>
-    </td>
-    
-    <td>
-      <%= trip.passenger_name %>
-    </td>
-  </tr>
+<article>
+  <% if @passenger.nil? %>
+    <h1> 404 Not found</h1>
+  <% else %>
+    <div class="passengerbox">
+      <h3>Name: <%=@passenger[:name]%></h3>
+      <h3>Phone Number: <%=@passenger[:phone_num]%></h3>
+    </div>
   <% end %>
-</tbody>
-</table>
 
-<%= link_to "Home", homepages_path %>
-<h3><%= link_to "Edit", edit_passenger_path(@passenger.id) %> </h3>
-<h3><%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are you sure that you want to delete this passenger?" } %></h3>
+  <table>
+    <thead>
+      <td>
+        ID
+      </td>
+      <td>
+        Date
+      </td>
+      <td>
+        Driver
+      </td>
+      <td>
+        Passenger
+      </td>
+      <td>
+        Price
+      </td>
+      <td>
+        Rating
+      </td>
+      <td>
+        Delete
+      </td>
+    </thead>
+    <tbody>
+
+  <% @passenger.trips.each do |trip| %>
+    <tr>
+      <td>
+        <%= link_to "#{trip.id}", trip_path(trip) %>
+      </td>
+      
+      <td>
+        <%= trip.date %>
+      </td>
+      
+      <td>
+        <%= trip.driver_name %>
+      </td>
+      
+      <td>
+        <%= trip.passenger_name %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+  </table>
+
+  <div>
+    <p class="button"><%= link_to "Edit", edit_passenger_path(@passenger.id) %></p>
+  </div>
+  <div>
+    <p class="button"><%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are you sure that you want to delete this passenger?" } %></p>
+  </div>
+</article>
