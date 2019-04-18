@@ -4,6 +4,7 @@
   <div class="passengerbox">
     <h3>Name: <%=@passenger[:name]%></h3>
     <h3>Phone Number: <%=@passenger[:phone_num]%></h3>
+    <h4>Total Amount Spent on Trips: $<%= '%.2f' % (@passenger.net_expenditures/100.0) %></h4>
   </div>
 <% end %>
 
@@ -49,6 +50,18 @@
     
     <td>
       <%= trip.passenger_name %>
+    </td>
+
+    <td>
+      $<%= '%.2f' % (trip.cost/100.0) %>
+    </td>
+
+    <td>
+      <%= trip.rating.to_f %>
+    </td>
+
+    <td>
+      <%= link_to "Edit", edit_driver_path(@passenger.id) %> | <%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: { confirm: "Are you sure that you want to delete this trip?" } %>
     </td>
   </tr>
   <% end %>
