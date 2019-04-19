@@ -29,7 +29,7 @@ class TripsController < ApplicationController
       passenger_id: params[:passenger_id],
       date: Date.current,
       cost: rand(100..20000),
-      rating: 4, # should be nil
+      rating: nil, # should be nil
     )
 
     save_is_successful = @trip.save
