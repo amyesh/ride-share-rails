@@ -5,7 +5,7 @@ class Trip < ApplicationRecord
   validates :driver_id, presence: true
   validates :passenger_id, presence: true
   validates :date, presence: true
-  validates :rating, presence: true
+  validates :rating, presence: false
   validates :cost, presence: true
 
   def driver_name

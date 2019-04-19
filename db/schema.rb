@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_18_172401) do
+ActiveRecord::Schema.define(version: 2019_04_19_221723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(version: 2019_04_18_172401) do
     t.datetime "updated_at", null: false
     t.string "vin"
     t.boolean "availability", default: true
-    t.string "car_make"
-    t.string "car_model"
   end
 
   create_table "homepages", force: :cascade do |t|
