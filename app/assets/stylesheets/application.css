@@ -152,3 +152,18 @@ article > div p.button {
     padding: 15px;
     font-size: 1.15rem;
 }
+
+td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid black;
+  }
+
+tr:hover {
+    background-color: white;
+}  
+
+thead {
+    background-color: rgb(114, 99, 250);
+    color: white;
+ }
