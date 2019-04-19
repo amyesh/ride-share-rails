@@ -1,5 +1,3 @@
-require "pry"
-
 class TripsController < ApplicationController
   def index
     if params[:driver_id]
