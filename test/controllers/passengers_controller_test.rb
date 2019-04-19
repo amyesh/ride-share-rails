@@ -27,9 +27,14 @@ describe PassengersController do
     end
   end
 
-  # describe "edit" do
-  #   # Your tests go here
-  # end
+  describe "edit" do
+    it "can get edit path for passenger" do
+      passenger = Passenger.create(name: "Faiza Ahsan", phone_num: "206-555-1234")
+
+      get edit_passenger_path(passenger.id)
+      must_respond_with :success
+    end
+  end
 
   describe "update" do
     it "will update an existing passenger" do

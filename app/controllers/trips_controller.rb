@@ -20,6 +20,12 @@ class TripsController < ApplicationController
     end
   end
 
+  def create
+    # find available driver
+    # create trip with available driver
+    # change status of available driver
+  end
+
   def edit
     @trip = Trip.find_by(id: params[:id])
   end
@@ -35,12 +41,6 @@ class TripsController < ApplicationController
       @trip = trip
       render :edit, status: :bad_request
     end
-  end
-
-  def create
-    # find available driver
-    # create trip with available driver
-    # change status of available driver
   end
 
   private
