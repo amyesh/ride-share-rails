@@ -7,6 +7,10 @@
     <h3>Phone Number: <%=@passenger[:phone_num]%></h3>
     <h4>Total Amount Spent on Trips: $<%= '%.2f' % (@passenger.net_expenditures/100.0) %></h4>
   </div>
+  <div>
+    <p class="button"><%= link_to "Request Trip", passenger_trips_path(@passenger.id), method: :post %></p>
+  </div>
+
 <% end %>
 
   <table>
