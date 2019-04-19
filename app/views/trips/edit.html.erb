@@ -1,0 +1,13 @@
+<article class="forms">
+  <h2> Edit Trip Details </h2>
+  <p> Please update trip's data below: </p>
+
+  <%= render partial: "tripform", locals: {
+    form_class: "edit-trip",
+    action_name: "Update Trip"
+  } %>
+
+  <div>
+    <p class="button"><%= link_to "All Trips", trips_path %></p>
+  </div> 
+</article>
