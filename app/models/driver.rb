@@ -1,6 +1,6 @@
 class Driver < ApplicationRecord
   has_many :trips
-  
+
   validates :name, presence: true
   validates :vin, presence: true, uniqueness: true
 
@@ -27,10 +27,9 @@ class Driver < ApplicationRecord
     self.trips.each do |trip|
       if trip.cost == nil
         revenue += 0
-      elsif
-        trip.cost < 1.65
+      elsif trip.cost < 1.65
         revenue += 0
-      else 
+      else
         revenue += ((trip.cost - 1.65) * 0.8).round(2)
       end
     end

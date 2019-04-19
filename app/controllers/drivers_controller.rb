@@ -60,7 +60,7 @@ class DriversController < ApplicationController
     driver = Driver.find_by(id: params[:id])
     driver.toggle(:availability)
     driver.save
-    redirect_to drivers_path
+    redirect_to driver_path(driver.id)
   end
 
   private

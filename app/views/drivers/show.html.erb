@@ -4,6 +4,15 @@
   <% else %>
     <div class="driverbox">
       <h3>Name: <%=@driver[:name]%></h3>
+      <%if @driver.availability == true%>
+        <div>
+          <p class="available button"><%= link_to "Available", { action: "toggle_availability", id: @driver.id, class: "available" }, method: :patch %></p>
+        </div>
+      <%else%>
+        <div>
+          <p class="unavailable button"><%= link_to "Unavailable", { action: "toggle_availability", id: @driver.id, class: "unavailable" }, method: :patch %></p>
+        </div>
+      <%end%>
       <h4>Vin: <%=@driver[:vin]%></h4>
       <h4>Average Rating: <%=@driver.average_rating%></h4>
       <h4> Total Revenue: $<%= '%.2f' % (@driver.total_revenue/100.0) %></h4>
