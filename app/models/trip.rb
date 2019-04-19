@@ -5,7 +5,7 @@ class Trip < ApplicationRecord
   validates :driver_id, presence: true
   validates :passenger_id, presence: true
   validates :date, presence: true
-  validates :rating, presence: true
+  #validates :rating, presence: true
   validates :cost, presence: true
 
   def driver_name
@@ -25,5 +25,4 @@ class Trip < ApplicationRecord
       return "Unknown"
     end
   end
-
 end # class end
