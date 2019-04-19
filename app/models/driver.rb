@@ -2,8 +2,6 @@ class Driver < ApplicationRecord
   has_many :trips
 
   validates :name, presence: true
-  validates :car_make, presence: true
-  validates :car_model, presence: true
   validates :vin, presence: true, uniqueness: true
 
   def average_rating
