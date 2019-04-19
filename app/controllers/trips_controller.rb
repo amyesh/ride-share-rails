@@ -1,3 +1,5 @@
+require "pry"
+
 class TripsController < ApplicationController
   def index
     if params[:driver_id]
@@ -21,9 +23,23 @@ class TripsController < ApplicationController
   end
 
   def create
-    # find available driver
-    # create trip with available driver
-    # change status of available driver
+    @driver = Driver.find_by(availability: true)
+    @trip = Trip.new(
+      driver_id: @driver.id,
+      passenger_id: params[:passenger_id],
+      date: Date.current,
+      cost: rand(100..20000),
+      rating: 4, # should be nil
+    )
+
+    save_is_successful = @trip.save
+    if save_is_successful
+      @driver.availability = false
+      @driver.save
+      redirect_to trip_path(@trip.id)
+    else
+      render :new, status: :bad_request
+    end
   end
 
   def edit
@@ -40,6 +56,17 @@ class TripsController < ApplicationController
     else
       @trip = trip
       render :edit, status: :bad_request
+    end
+  end
+
+  def destroy
+    trip = Trip.find_by(id: params[:id])
+
+    if trip.nil?
+      head :not_found
+    else
+      trip.destroy
+      redirect_to homepages_path # How can we do a custom redirect here?
     end
   end
 

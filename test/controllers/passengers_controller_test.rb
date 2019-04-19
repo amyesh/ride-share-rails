@@ -95,10 +95,6 @@ describe PassengersController do
   end
 
   describe "new" do
-    # Your tests go here
-  end
-
-  describe "create" do
     it "will save a new passenger and redirect if valid" do
       passenger_name = "Faiza Ahsan"
       passenger_phone_num = "(123)456-7890"

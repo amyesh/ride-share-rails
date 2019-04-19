@@ -105,10 +105,61 @@ describe TripsController do
   end
 
   describe "create" do
-    # Your tests go here
+    it "will save a new trip and redirect if valid" do
+      passenger = Passenger.create(name: "Faiza Ahsan", phone_num: "555-555-5555")
+
+      expect {
+        post passenger_trips_path(passenger.id)
+      }.must_change "Trip.count", 1
+
+      new_trip = Trip.find_by(passenger_id: passenger.id)
+      expect(new_trip).wont_be_nil
+      expect(new_trip.date).must_equal Date.current
+
+      must_respond_with :redirect
+    end
+
+    it "will return a 400" do
+      passenger = Passenger.create(name: "", phone_num: "555-555-5555")
+      driver = Driver.create(name: "Amy Martinsen", vin: "ABCDEFG")
+
+      test_input = {
+        "trip": {
+          rating: 3,
+          cost: 1602,
+          passenger_id: passenger.id,
+          driver_id: driver.id,
+          date: "",
+        },
+      }
+
+      expect {
+        post trips_path params: test_input
+      }.wont_change "Trip.count"
+
+      must_respond_with :bad_request
+    end
   end
 
   describe "destroy" do
-    # Your tests go here
+    it "can delete a trip" do
+      driver = Driver.create(name: "Amy Martinsen", vin: "ABCDEFG")
+      passenger = Passenger.create(name: "Faiza Ahsan", phone_num: "555-555-5555")
+      trip = Trip.create(passenger_id: passenger.id, driver_id: driver.id, rating: 5, cost: 1474, date: "2016-06-02")
+
+      expect {
+        delete trip_path(trip.id)
+      }.must_change "Trip.count", -1
+
+      must_respond_with :redirect
+      must_redirect_to homepages_path
+    end
+
+    it "returns a 404 if the trip is not valid" do
+      invalid_trip_id = -1
+
+      get trip_path(invalid_trip_id)
+      must_respond_with :not_found
+    end
   end
 end
