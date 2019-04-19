@@ -167,7 +167,7 @@ describe DriversController do
     it "changes default status to false" do
       @driver = Driver.create(name: "Amy Martinson", vin: "ABCDEFGH123456789")
       patch toggle_availability_path(@driver.id)
-      assert_redirected_to drivers_path
+      assert_redirected_to driver_path(@driver.id)
       @driver.reload
       assert_equal false, @driver.availability
     end
@@ -175,7 +175,7 @@ describe DriversController do
       @driver = Driver.create(name: "Amy Martinson", vin: "ABCDEFGH123456789")
       patch toggle_availability_path(@driver.id)
       patch toggle_availability_path(@driver.id)
-      assert_redirected_to drivers_path
+      assert_redirected_to driver_path(@driver.id)
       @driver.reload
       assert_equal true, @driver.availability
     end
