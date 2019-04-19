@@ -95,6 +95,7 @@ describe PassengersController do
   end
 
   describe "new" do
+<<<<<<< HEAD
     it "can get new path for passenger" do
       get new_passenger_path
       must_respond_with :success
@@ -102,6 +103,8 @@ describe PassengersController do
   end
 
   describe "create" do
+=======
+>>>>>>> c137cf969c27aa2937c551703ea82638468acc94
     it "will save a new passenger and redirect if valid" do
       passenger_name = "Faiza Ahsan"
       passenger_phone_num = "(123)456-7890"
