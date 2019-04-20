@@ -1,5 +1,3 @@
-require "pry"
-
 class TripsController < ApplicationController
   def index
     if params[:driver_id]
@@ -66,7 +64,7 @@ class TripsController < ApplicationController
       head :not_found
     else
       trip.destroy
-      redirect_to homepages_path # How can we do a custom redirect here?
+      redirect_to trips_path
     end
   end
 
