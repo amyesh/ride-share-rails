@@ -37,7 +37,7 @@ header {
 }
 
 body {
-    background-image: url("highwayfinal.jpg");
+    background-image: url("https://gdurl.com/8bTM");
     width: auto;
 }
 
@@ -166,4 +166,9 @@ tr:hover {
 thead {
     background-color: rgb(114, 99, 250);
     color: white;
+ }
+
+ .rating {
+     font-size: 1rem;
+     margin: 1rem;
  }
