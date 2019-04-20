@@ -12,7 +12,7 @@ describe TripsController do
     it "should be OK to show an existing, valid driver" do
       driver = Driver.create(name: "Amy Martinsen", vin: "ABCDEFG")
       passenger = Passenger.create(name: "Faiza Ahsan", phone_num: "555-555-5555")
-      trip = Trip.create(passenger_id: passenger.id, driver_id: driver.id, rating: 5, cost: 1474, date: "2016-06-02")
+      trip = Trip.create(passenger_id: passenger.id, driver_id: driver.id, rating: nil, cost: 1474, date: "2016-06-02")
       valid_trip_id = trip.id
 
       get trip_path(valid_trip_id)
@@ -33,7 +33,7 @@ describe TripsController do
     it "can get edit path for trip" do
       driver = Driver.create(name: "Amy Martinsen", vin: "ABCDEFG")
       passenger = Passenger.create(name: "Faiza Ahsan", phone_num: "555-555-5555")
-      trip = Trip.create(passenger_id: passenger.id, driver_id: driver.id, rating: 5, cost: 1474, date: "2016-06-02")
+      trip = Trip.create(passenger_id: passenger.id, driver_id: driver.id, rating: nil, cost: 1474, date: "2016-06-02")
       get edit_trip_path(trip.id)
       must_respond_with :success
     end
@@ -43,7 +43,7 @@ describe TripsController do
     it "will update an existing trip" do
       driver = Driver.create(name: "Amy Martinsen", vin: "ABCDEFG")
       passenger = Passenger.create(name: "Faiza Ahsan", phone_num: "555-555-5555")
-      trip_to_update = Trip.create(passenger_id: passenger.id, driver_id: driver.id, rating: 5, cost: 1474, date: "2016-06-02")
+      trip_to_update = Trip.create(passenger_id: passenger.id, driver_id: driver.id, rating: nil, cost: 1474, date: "2016-06-02")
 
       input_rating = 3
       input_cost = 1602
@@ -143,7 +143,7 @@ describe TripsController do
     it "can delete a trip" do
       driver = Driver.create(name: "Amy Martinsen", vin: "ABCDEFG")
       passenger = Passenger.create(name: "Faiza Ahsan", phone_num: "555-555-5555")
-      trip = Trip.create(passenger_id: passenger.id, driver_id: driver.id, rating: 5, cost: 1474, date: "2016-06-02")
+      trip = Trip.create(passenger_id: passenger.id, driver_id: driver.id, rating: nil, cost: 1474, date: "2016-06-02")
 
       expect {
         delete trip_path(trip.id)

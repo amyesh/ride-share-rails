@@ -13,8 +13,6 @@
           <p class="unavailable button"><%= link_to "Unavailable", { action: "toggle_availability", id: @driver.id, class: "unavailable" }, method: :patch %></p>
         </div>
       <%end%>
-      <h4>Make: <%=@driver[:car_make]%></h4>
-      <h4>Model: <%=@driver[:car_model]%></h4>
       <h4>Vin: <%=@driver[:vin]%></h4>
       <h4>Average Rating: <%=@driver.average_rating%></h4>
       <h4> Total Revenue: $<%= '%.2f' % (@driver.total_revenue/100.0) %></h4>
@@ -55,11 +53,11 @@
         </td>
 
         <td>
-          <%= trip.driver_name %>
+          <%= link_to "#{trip.driver_name}", driver_path(trip.driver_id) %>
         </td>
 
         <td>
-          <%= trip.passenger_name %>
+          <%= link_to "#{trip.passenger_name}", passenger_path(trip.passenger_id) %>
         </td>
 
       <td>
