@@ -14,7 +14,6 @@ describe TripsController do
       passenger = Passenger.create(name: "Faiza Ahsan", phone_num: "555-555-5555")
       trip = Trip.create(passenger_id: passenger.id, driver_id: driver.id, rating: 5, cost: 1474, date: "2016-06-02")
       valid_trip_id = trip.id
-      # binding.pry
 
       get trip_path(valid_trip_id)
 
@@ -151,7 +150,7 @@ describe TripsController do
       }.must_change "Trip.count", -1
 
       must_respond_with :redirect
-      must_redirect_to homepages_path
+      must_redirect_to trips_path
     end
 
     it "returns a 404 if the trip is not valid" do
