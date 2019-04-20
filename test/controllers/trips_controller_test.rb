@@ -1,5 +1,4 @@
 require "test_helper"
-require "pry"
 
 describe TripsController do
   describe "index" do
